@@ -62,6 +62,24 @@ $ docker run -d \
   --restart unless-stopped \
   weejewel/wg-easy
 </pre>
+<pre>
+docker run -d \
+  --name=wg-easy \
+  -e WG_HOST=<b>🚨YOUR_SERVER_IP</b> \
+  -e PASSWORD=<b>🚨YOUR_ADMIN_PASSWORD</b> \
+  -e WG_DEFAULT_ADDRESS=10.1.1.x \
+  -e WG_DEFAULT_DNS=8.8.8.8,114.114.114.114 \
+  -e WG_PORT=<b>🚨YOUR_CONNECT_PORT</b> \
+  -v ~/.wg-easy:/etc/wireguard \
+  -p <b>🚨YOUR_CONNECT_PORT</b>:51820/udp \
+  -p 51821:51821/tcp \
+  --cap-add=NET_ADMIN \
+  --cap-add=SYS_MODULE \
+  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+  --sysctl="net.ipv4.ip_forward=1" \
+  --restart unless-stopped \
+  weejewel/wg-easy
+</pre>
 
 > 💡 Replace `YOUR_SERVER_IP` with your WAN IP, or a Dynamic DNS hostname.
 > 
